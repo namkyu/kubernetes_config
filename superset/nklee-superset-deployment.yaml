@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nklee-superset-deploy
+  labels:
+    app: nklee-superset
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nklee-superset
+  template:
+    metadata:
+      labels:
+        app: nklee-superset
+    spec:
+      containers:
+      - name: superset
+        image: nklee_superset:v2
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - secretRef:
+            name: nklee-superset-secret           
