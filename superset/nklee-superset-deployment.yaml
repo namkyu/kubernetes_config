@@ -16,9 +16,13 @@ spec:
     spec:
       containers:
       - name: superset
-        image: nklee_superset:v2
+        image: nklee_superset:v5
         ports:
-        - containerPort: 8080
+        - containerPort: 8088
         envFrom:
         - secretRef:
-            name: nklee-superset-secret           
+            name: nklee-superset-secret
+      - name: redis
+        image: redis:5.0.7
+        ports:
+        - containerPort: 6379       
